@@ -1,0 +1,22 @@
+
+<li [ngClass]="{
+    'list-group-item': true,
+    'list-group-item-success': deviceStatus === 'on',
+    'list-group-item-danger': deviceStatus === 'off',
+    'pb-10': true
+  }">
+
+  <h4
+    [ngStyle]="{color: getColor()}"><strong>#{{ index }}</strong> Device : {{ deviceName }} -- Status : {{ getStatus() }}</h4>
+  <input type="text" class="form-control" [(ngModel)]="deviceName" >
+  <a [routerLink]="['/devices', id]">Details</a>
+  <br>
+  <button class="btn btn-sm btn-success"
+    *ngIf="deviceStatus === 'off'"
+    (click)="onSwitch()"
+  >Turn on</button>
+  <button class="btn btn-sm btn-danger"
+    *ngIf="deviceStatus === 'on'"
+    (click)="onSwitch()"
+  >Turn off</button>
+</li>

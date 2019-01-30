@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>My devices</h2>
+      <p>
+        Updated : {{ lastUpdate | async | date: 'yMMMMEEEEd' | uppercase }}
+      </p>
+      <ul class="list-group">
+        <!-- <app-device [deviceName]="deviceOne" [deviceStatus]="'off'" ></app-device>
+        <app-device [deviceName]="deviceTwo" [deviceStatus]="'on'" ></app-device>
+        <app-device [deviceName]="deviceThree" [deviceStatus]="'off'" ></app-device> -->
+        <app-device *ngFor="let device of devices; let i = index"
+          [deviceName]="device.name"
+          [deviceStatus]="device.status"
+          [index]="i"
+          [id]="device.id"></app-device>
+      </ul>
+      <button class="btn btn-success"
+          [disabled]="!isAuth"
+          (click)="onOn()"
+      >Turn everything on</button>
+      <button class="btn btn-danger"
+          [disabled]="!isAuth"
+          (click)="onOff()"
+      >Turn everything off</button>
+      <button class="btn btn-primary"
+        (click)="onSave()">
+        Save devices
+      </button>
+      <button class="btn btn-primary"
+        (click)="onFetch()"
+      >
+        Fetch devices
+      </button>
+    </div>
+  </div>
+</div>
